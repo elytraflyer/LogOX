@@ -4,7 +4,7 @@
  *      | | |  ____| |  __  | |  ____| \ \  / /
  *      | | | |___|| |____  | | |___||  \ \/ /
  *      |_| |______| |______| |______|  / /\ \
- *                                    /_/   \_\
+ *                                     /_/  \_\
  *
  *    By Elytraflyer(http://github.com/elytraflyer) 2020.12
  */
@@ -1007,45 +1007,38 @@ namespace logox {
             return log_flag[RULE_NUMBER];
         }
 
-        bool Log_Trace(string message,string placeholder = "[MESSAGE]"){
+        bool Log_Trace(string message,string placeholder = "[TRACE:MESSAGE]"){
             _TraceBuffer.InsertMsg(message);
             if(log_level == TRACE_LEVEL || log_level == ALL_LEVEL){
-                SetBGColor("white");
-                SetFontColor("grey");
+                SetFontColor("white");
                 output << placeholder << message;
                 if(log_flag[NEWLINE_FLAG]){
                     output << '\n';
                 }
-                SetBGColor("black");
-                SetFontColor("white");
             }
             return true;
         }
 
-        bool Warn_Trace(string message,string placeholder = "[WARNING]"){
+        bool Warn_Trace(string message,string placeholder = "[TRACE:WARNING]"){
             _TraceBuffer.InsertMsg(message);
             if(log_level == TRACE_LEVEL || log_level == ALL_LEVEL){
-                SetBGColor("yellow");
-                SetFontColor("white");
+                SetFontColor("yellow");
                 output << placeholder << message;
                 if(log_flag[NEWLINE_FLAG]){
                     output << '\n';
                 }
-                SetBGColor("black");
             }
             return true;
         }
 
-        bool Error_Trace(string message,string placeholder = "[ERROR]   "){
+        bool Error_Trace(string message,string placeholder = "[TRACE:ERROR]   "){
             _TraceBuffer.InsertMsg(message);
             if(log_level == TRACE_LEVEL || log_level == ALL_LEVEL){
-                SetBGColor("red");
-                SetFontColor("white");
+                SetFontColor("red");
                 output << placeholder << message;
                 if(log_flag[NEWLINE_FLAG]){
                     output << '\n';
                 }
-                SetBGColor("black");
             }
             return true;
         }
@@ -1053,15 +1046,24 @@ namespace logox {
         bool DEBUG_LOG(string message,string placeholder = "[DEBUG]   "){
             _DebugBuffer.InsertMsg(message);
             if(log_level == DEBUG_LEVEL || log_level == ALL_LEVEL){
-                SetBGColor("red");
-                SetFontColor("white");
+                SetFontColor("red");
                 output << placeholder << message;
                 if(log_flag[NEWLINE_FLAG]){
                     output << '\n';
                 }
-                SetBGColor("black");
+                SetFontColor("grey");
             }
             return true;
+        }
+
+        void ChLogLevel(int level){
+            if(level == NORMAL_LEVEL || level == TRACE_LEVEL || level == DEBUG_LEVEL || level == ALL_LEVEL){
+                log_level = level;
+            } else {
+                LOGOX_EXCEPTION LXe("This logging level(NORMAL_LEVEL,TRACE_LEVEL,DEBUG_LEVEL,ALL_LEVEL) is not supported.");
+                throw LXe;
+                return;
+            }
         }
     // end of class
     };
