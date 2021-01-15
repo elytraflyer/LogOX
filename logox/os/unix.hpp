@@ -48,16 +48,4 @@ int FileSize(string filepath){
     return size;
 }
 
-void SetBGColor(string color){
-    if(color == "white"){
-        cout << "\033[47m";
-    } else if(color == "red"){
-        cout << "\033[41m";
-    } else if(color == "yellow"){
-        cout << "\033[33m\033[7m";
-    } else if(color == "black"){
-        cout << "\033[0m";
-    }
-}
-
 #endif
