@@ -727,8 +727,8 @@ namespace logox {
             }
         }
 
-        bool LogToFile_SR(int bytes,string message,string ToFile,string placeholder = "[MESSAGE] "){ //SR: Size Rotating
-            if(FileSize(ToFile) > bytes && outfile){
+        bool LogToFile_SR(unsigned int bytes,string message,string ToFile,string placeholder = "[MESSAGE] "){ //SR: Size Rotating
+            if(static_cast<unsigned int>(FileSize(ToFile)) > bytes && outfile){
                 outfile.open(ToFile, ios::trunc);
 
                 outfile << placeholder + message;
@@ -746,7 +746,7 @@ namespace logox {
                 return false;
             }
 
-            if (FileSize(ToFile) <= bytes && outfile) {
+            if (static_cast<unsigned int>(FileSize(ToFile)) <= bytes && outfile) {
                 if (log_flag[FILE_NTRUNC_FLAG]) {
                     outfile.open(ToFile, ios::app);
                 } else if (log_flag[FILE_TRUNC_FLAG]) {
@@ -772,8 +772,8 @@ namespace logox {
             }
         }
 
-        bool WarnToFile_SR(int bytes,string message,string ToFile,string placeholder = "[WARNING] "){ //SR: Size Rotating
-            if(FileSize(ToFile) > bytes && outfile){
+        bool WarnToFile_SR(unsigned int bytes,string message,string ToFile,string placeholder = "[WARNING] "){ //SR: Size Rotating
+            if(static_cast<unsigned int>(FileSize(ToFile)) > bytes && outfile){
                 outfile.open(ToFile, ios::trunc);
 
                 outfile << placeholder + message;
@@ -791,7 +791,7 @@ namespace logox {
                 return false;
             }
 
-            if (FileSize(ToFile) <= bytes && outfile) {
+            if (static_cast<unsigned int>(FileSize(ToFile)) <= bytes && outfile) {
                 if (log_flag[FILE_NTRUNC_FLAG]) {
                     outfile.open(ToFile, ios::app);
                 } else if (log_flag[FILE_TRUNC_FLAG]) {
@@ -817,8 +817,8 @@ namespace logox {
             }
         }
 
-        bool ErrorToFile_SR(int bytes,string message,string ToFile,string placeholder = "[ERROR]   "){ //SR: Size Rotating
-            if(FileSize(ToFile) > bytes && outfile){
+        bool ErrorToFile_SR(unsigned int bytes,string message,string ToFile,string placeholder = "[ERROR]   "){ //SR: Size Rotating
+            if(static_cast<unsigned int>(FileSize(ToFile)) > bytes && outfile){
                 outfile.open(ToFile, ios::trunc);
 
                 outfile << placeholder + message;
@@ -836,7 +836,7 @@ namespace logox {
                 return false;
             }
 
-            if (FileSize(ToFile) <= bytes && outfile) {
+            if (static_cast<unsigned int>(FileSize(ToFile)) <= bytes && outfile) {
                 if (log_flag[FILE_NTRUNC_FLAG]) {
                     outfile.open(ToFile, ios::app);
                 } else if (log_flag[FILE_TRUNC_FLAG]) {
