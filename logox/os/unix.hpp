@@ -39,13 +39,14 @@ bool SetFontColor(string color) noexcept{
 }
 
 int FileSize(string filepath){
-    FILE* file = fopen(filepath.c_str(), "r");
-    int size;
-    if (file){
-        size = filelength(fileno(file));
-        fclose(file);
+    ifstream infile(filepath,ios::binary);
+    if(infile){
+        infile.seekg(0,ios::end);
+        int fsize = infile.tellg();
+        return fsize;
+    } else {
+        return -1;
     }
-    return size;
 }
 
 #endif
