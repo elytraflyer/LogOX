@@ -36,3 +36,13 @@ msgbuf_t msgbuf;
 msgbuf.InsertMsg("hello");
 l.DumpBuffer(msgbuf);
 ```
+
+LogOX exceptions:
+
+```cpp
+try{
+    l.LogToFile("hello.txt","hello,world!");
+} catch(LOGOX_EXCEPTON LXe) {
+    cout << LXe.what();
+}
+```
